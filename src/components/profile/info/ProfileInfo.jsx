@@ -6,7 +6,7 @@ const ProfileInfo = (props) => {
         <div>
             <div className={s.profileImage}>
                 <img
-                    src="https://media-exp1.licdn.com/dms/image/C4E1BAQGnh_tKiWytWg/company-background_10000/0?e=2159024400&v=beta&t=8Jxd1rbTcSiLdrT6mGdiasdQD2RAz-Ohfi3SXwQPfwQ"
+                    src="https://www.wallpaperflare.com/static/459/594/357/ultra-wide-photography-space-art-space-wallpaper.jpg"
                     alt="background"/>
             </div>
             <div className={s.description}>

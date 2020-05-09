@@ -4,18 +4,56 @@ import Dialog from "./dialog/Dialog.jsx";
 import Message from "./message/Message";
 
 let Dialogs = (props) => {
+
+    let dialogsData = [
+        {
+            "id": 1,
+            "name": "Dimos Papados"
+        },
+        {
+            "id": 2,
+            "name": "Vika Masyanya"
+        },
+        {
+            "id": 3,
+            "name": "Roman ne Narkoman Param pa pam"
+        },
+        {
+            "id": 4,
+            "name": "Anton"
+        },
+        {
+            "id": 5,
+            "name": "Женек Медюхо"
+        },
+        {
+            "id": 6,
+            "name": "James Bond"
+        }
+    ];
+
+    let dialogs = dialogsData.map(
+        (dialog) => <Dialog id={dialog.id} name={dialog.name}/>
+    );
+
+    let messagesData = [
+        {"text": "Hi", "id": 1},
+        {"text": "Hi", "id": 2},
+        {"text": "How is your react?", "id": 3},
+        {"text": "Thanks, what about you?", "id": 4},
+    ];
+
+    let messages = messagesData.map(
+        (message) => <Message text={message.text}/>
+    );
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <Dialog id={1} name={"Dimos"}/>
-                <Dialog id={2} name={"Vika"}/>
-                <Dialog id={3} name={"Kenny"}/>
-                <Dialog id={4} name={"Valera"}/>
+                {dialogs}
             </div>
             <div className={s.messages}>
-                <Message text={"Hi"}/>
-                <Message text={"Hello"}/>
-                <Message text={"How is your react?"}/>
+                {messages}
             </div>
         </div>
     )
