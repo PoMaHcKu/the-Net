@@ -1,3 +1,8 @@
-.message {
-    font: 14px white Serif;
+.like {
+    font: 12px white Serif;
+}
+
+.like img {
+    height: 20px;
+    width: 20px;
 }

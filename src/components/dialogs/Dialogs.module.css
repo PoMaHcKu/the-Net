@@ -1,12 +1,19 @@
-import React from "react";
-import style from "../../App.css"
+.dialogs {
+    display: grid;
 
-const Dialogs = (props) => {
-  return (
-      <div className={style.appWrapper}>
-        Dialogs
-      </div>
-  )
-};
+    grid-template-rows: 20px 1fr;
+    grid-template-columns: 2fr 10fr;
+}
 
-export default Dialogs;
+.messages {
+    padding: 10px;
+}
+
+.dialogItems {
+    padding: 10px;
+    font: bold 1.1em Arial;
+}
+
+.dialogItems .active {
+    color: #393939;
+}

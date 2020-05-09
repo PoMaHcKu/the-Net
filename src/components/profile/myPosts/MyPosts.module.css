@@ -1,15 +1,8 @@
-.content {
-    grid-area: c;
-    background-color: royalblue;}
-
-.content img {
-    width: 100%;
+.postsBlock {
+    padding: 10px;
 }
 
 .posts {
-    background-color: gray;
+    margin-top: 5px;
 }
 
-.item {
-    color: green;
-}

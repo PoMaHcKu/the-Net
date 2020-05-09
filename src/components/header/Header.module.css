@@ -1,8 +1,22 @@
 .header {
     grid-area: h;
-    background-color: royalblue;
+    background-color: #454545;
+    display: grid;
+
+    grid-template-areas:
+        "logo textLogo";
+
+    grid-template-columns: 60px 1fr;
 }
 
-.header img {
+.logo img {
     height: 60px;
+}
+
+.logo {
+}
+
+.textLogo {
+    font: 40px "Arial Black";
+    color: #e7e7e7;
 }

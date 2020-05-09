@@ -1,3 +1,15 @@
-.message {
+.dialog {
+    background-color: #D7D7D7;
+    margin: 1px;
+    padding: 2px 2px 0 5px;
 
+}
+
+.dialog a {
+    text-decoration: none;
+    color: #9B9B9B;
+}
+
+.dialog a.active {
+    color: #5D5D5D;
 }

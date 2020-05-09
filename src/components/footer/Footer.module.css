@@ -1,8 +1,15 @@
-.header {
-    grid-area: h;
-    background-color: royalblue;
+.footer {
+    grid-area: f;
+    background-color: #454545;
+    text-align: center;
 }
 
-.header img {
-    height: 60px;
+.footer img {
+    height: 30px;
+    margin-top: 5px;
+}
+
+.sign {
+    color: white;
+    font-size: 17px;
 }

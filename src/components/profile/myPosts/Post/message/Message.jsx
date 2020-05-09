@@ -1,12 +1,12 @@
 import React from 'react';
-import s from './Author.module.css'
+import s from './Message.module.css'
 
-const Author = (props) => {
+const Message = (props) => {
     return (
-        <div className={s.author}>
-            <span>{props.name}, {props.age}</span><br/>
+        <div className={s.message}>
+            {props.message}
         </div>
     );
 };
 
-export default Author;
+export default Message;
