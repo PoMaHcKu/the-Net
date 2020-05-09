@@ -3,16 +3,3 @@
 
     grid-template-columns: 2fr 9fr;
 }
-
-.messages {
-    padding: 5px;
-}
-
-.dialogItems {
-    padding: 5px;
-    font: bold 1em Arial;
-}
-
-.dialogItems .active {
-    color: #393939;
-}

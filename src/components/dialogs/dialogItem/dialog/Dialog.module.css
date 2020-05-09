@@ -1,15 +1,18 @@
 .dialog {
     background-color: #D7D7D7;
     margin: 1px;
-    padding: 11px 5px 6px 5px;
-
+    padding: 0;
+    border-radius: 5px;
 }
 
 .dialog a {
+    display: block;
     text-decoration: none;
     color: #9B9B9B;
+    padding: 8px 5px 7px 5px;
 }
 
 .dialog a.active {
     color: #5D5D5D;
+    background-color: #e8e8e8;
 }

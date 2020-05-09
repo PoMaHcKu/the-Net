@@ -19,4 +19,5 @@
 .textLogo {
     font: 40px "Arial Black";
     color: #e7e7e7;
+    -ms-grid-row-align: center;
 }

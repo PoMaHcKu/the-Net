@@ -1,8 +1,10 @@
 .app-wrapper {
 
     display: grid;
-    width: 80%;
     margin: auto;
+    width: 80%;
+    min-width: 550px;
+    max-width: 1000px;
     grid-template-areas:
             "h h"
             "n c"
