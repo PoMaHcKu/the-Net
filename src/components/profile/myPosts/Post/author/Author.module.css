@@ -1,0 +1,34 @@
+.item {
+    grid-area: c;
+    background-color: royalblue;
+    border-top: white 3px solid;
+    height: 51px;
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    float: left;
+    margin: 1px;
+}
+
+.author {
+    font: 12px white Serif;
+}
+
+.message {
+    font: 14px white Serif;
+}
+
+.like {
+    float: bottom;
+    font: 12px white Serif;
+}
+
+.like img {
+    height: 20px;
+    width: 20px;
+    border-radius: 0;
+    margin-bottom: 1px;
+}
