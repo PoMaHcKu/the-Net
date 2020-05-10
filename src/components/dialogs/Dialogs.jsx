@@ -8,7 +8,11 @@ let Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <DialogItem dialogs={props.dialogsState.dialogs}/>
-            <MessageItem messages={props.dialogsState.messages}/>
+            <MessageItem messages={props.dialogsState.messages}
+                         currentMessage={props.dialogsState.currentMessage}
+                         updateTextCurrentMessage={props.updateTextCurrentMessage}
+                         addNewMessage={props.addNewMessage}
+            />
         </div>
     )
 };

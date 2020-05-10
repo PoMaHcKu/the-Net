@@ -45,7 +45,8 @@ let state = {
             {"text": "Yes", "id": 3, "authorId": 3},
             {"text": "How is your react?", "id": 3, "authorId": 3},
             {"text": "It's fine, thanks. What have you written?", "id": 4, "authorId": 2}
-        ]
+        ],
+        currentMessage: ''
     },
     navbar: {
         friends: [
@@ -87,8 +88,24 @@ export let newPostTextUpdate = (text) => {
     rerenderAndSendFunctions();
 };
 
+export let addNewMessage= () => {
+    let newMessage = {
+        "text": state.dialogsState.currentMessage,
+        "id": 2,
+        "authorId": 3
+    };
+    state.dialogsState.messages.push(newMessage);
+    state.dialogsState.currentMessage = '';
+    rerenderAndSendFunctions();
+};
+
+export let updateTextCurrentMessage = (text) => {
+    state.dialogsState.currentMessage = text;
+    rerenderAndSendFunctions();
+};
+
 let rerenderAndSendFunctions = () => {
-  rerender(state, addNewPost, newPostTextUpdate);
+  rerender(state, addNewPost, newPostTextUpdate, addNewMessage, updateTextCurrentMessage);
 };
 
 export default state;
