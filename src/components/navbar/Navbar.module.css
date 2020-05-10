@@ -2,10 +2,11 @@
     grid-area: n;
     background-color: #454545;
     padding: 1.2em;
+    min-width: 100px;
 
     display: grid;
 
     grid-template-areas: "m" "f";
+    grid-template-rows: 120px 1fr;
 
-    grid-template-rows: auto 1fr;
 }

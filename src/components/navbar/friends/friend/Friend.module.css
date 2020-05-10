@@ -1,13 +1,14 @@
 .friend {
-    grid-area: fr;
-
     padding: 5px;
-    width: 66px;
     color: white;
     font-size: 0.6em;
     margin: 2px;
-
+    text-align: center;
     border: white 2px solid;
+
+    min-width: 70px;
+    mxn-width: 110px;
+    display: inline-block;
 }
 
 .friend img {
