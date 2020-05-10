@@ -10,7 +10,6 @@ const Post = (props) => {
             <img src="https://m.gpspro.lv/images/full/091cf15ec8f9fc5ab5fd6b6996a9b212.jpg" alt="avatar"/>
             <Message message={props.message}/>
             <Like countLike={props.countLike}/>
-
         </div>
     );
 };

@@ -3,25 +3,42 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-
-    let posts = props.posts.map(
-      (post) => <Post message={post.message} countLike={post.countLike}/>
+    let posts = props.profileState.posts.map(
+        (post) => <Post message={post.message} countLike={post.countLike} delete={props.functions}/>
     );
+
+    let newPostElement = React.createRef();
+
+    let addPost = () => {
+        props.addNewPost();
+    };
+
+    let newPostUpdateText = () => {
+        let text = newPostElement.current.value;
+        props.updateTextNewPost(text);
+    };
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <textarea rows="4" maxLength="500" cols={60} placeholder={"What's new?"}/>
+                <textarea onChange={newPostUpdateText}
+                          ref={newPostElement}
+                          rows="4"
+                          maxLength="500"
+                          cols={60}
+                          placeholder={"What's new?"}
+                          value={props.profileState.newPostText}/>
             </div>
             <div>
-                <button>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {posts}
             </div>
         </div>
-    );
+    )
+        ;
 };
 
 export default MyPosts;

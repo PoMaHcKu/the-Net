@@ -2,11 +2,12 @@ import ReactDOM from "react-dom";
 import App from "../App";
 import React from "react";
 
-export let rerender = (state, functions) => {
+export let rerender = (state, addNewPost, updateTextNewPost) => {
     ReactDOM.render(
         <App
             state={state}
-            functions = {functions}/>,
+            addNewPost = {addNewPost}
+            updateTextNewPost={updateTextNewPost}/>,
         document.getElementById('root')
     );
 };

@@ -8,6 +8,7 @@ let state = {
             {"message": "How is your react?", "id": 3, "countLike": 7},
             {"message": "Great jobs!!!", "id": 4, "countLike": 117}
         ],
+        newPostText: "",
     },
     dialogsState: {
         dialogs: [
@@ -70,15 +71,24 @@ let state = {
     }
 };
 
-export let addNewPost = (postMessage) => {
+export let addNewPost = () => {
     let newPost = {
-        message: postMessage,
+        message: state.profileState.newPostText,
         id: 5,
         countLike: 0
     };
     state.profileState.posts.push(newPost);
-    rerender(state, addNewPost);
+    state.profileState.newPostText = '';
+    rerenderAndSendFunctions();
 };
 
+export let newPostTextUpdate = (text) => {
+    state.profileState.newPostText = text;
+    rerenderAndSendFunctions();
+};
+
+let rerenderAndSendFunctions = () => {
+  rerender(state, addNewPost, newPostTextUpdate);
+};
 
 export default state;
