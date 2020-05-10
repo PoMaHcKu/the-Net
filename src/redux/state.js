@@ -1,3 +1,5 @@
+import {rerender} from "./render";
+
 let state = {
     profileState: {
         posts: [
@@ -67,5 +69,16 @@ let state = {
         ]
     }
 };
+
+export let addNewPost = (postMessage) => {
+    let newPost = {
+        message: postMessage,
+        id: 5,
+        countLike: 0
+    };
+    state.profileState.posts.push(newPost);
+    rerender(state, addNewPost);
+};
+
 
 export default state;
