@@ -1,0 +1,17 @@
+.friend {
+    grid-area: fr;
+
+    padding: 5px;
+    width: 66px;
+    color: white;
+    font-size: 0.6em;
+    margin: 2px;
+
+    border: white 2px solid;
+}
+
+.friend img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}

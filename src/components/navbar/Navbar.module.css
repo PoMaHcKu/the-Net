@@ -2,18 +2,10 @@
     grid-area: n;
     background-color: #454545;
     padding: 1.2em;
-}
 
-.item {
-    color: white;
-    font-size: 1.2em;
-}
+    display: grid;
 
-.item a {
-    text-decoration: none;
-    color: white;
-}
+    grid-template-areas: "m" "f";
 
-.item a.active {
-    color: gold;
+    grid-template-rows: auto 1fr;
 }

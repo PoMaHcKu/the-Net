@@ -1,0 +1,17 @@
+.menu {
+    grid-area: m;
+}
+
+.item {
+    color: white;
+    font-size: 1.2em;
+}
+
+.item a {
+    text-decoration: none;
+    color: white;
+}
+
+.item a.active {
+    color: gold;
+}

@@ -1,5 +1,5 @@
 .dialogs {
     display: grid;
 
-    grid-template-columns: 2fr 9fr;
+    grid-template-columns: 3fr 10fr;
 }
