@@ -1,6 +1,7 @@
 import React from "react";
 import s from './MessageItem.module.css'
 import Message from "./message/Message";
+import {addMessageActionCreator, updateTextNewMessageActionCreator} from "../../../redux/state";
 
 let MessageItem = (props) => {
 
@@ -8,22 +9,16 @@ let MessageItem = (props) => {
         (message) => <Message authorId={message.authorId} text={message.text}/>
     );
 
-    let action = {
-        type: '',
-        updateTextNewMessage: ''
-    };
-
     let newMessageElement = React.createRef();
 
     let addMessage = () => {
-        action.type = 'ADD-MESSAGE';
-        props.dispatcher(action);
+        props.dispatcher(addMessageActionCreator());
     };
 
     let updateTextNewMessage = () => {
-        action.type = 'UPDATE-NEW-MESSAGE-TEXT';
-        action.updateTextNewMessage = newMessageElement.current.value;
-        props.dispatcher(action);
+        props.dispatcher(
+            updateTextNewMessageActionCreator(
+                newMessageElement.current.value));
     };
 
     return (
