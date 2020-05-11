@@ -15,7 +15,7 @@ const MyPosts = (props) => {
 
     let newPostUpdateText = () => {
         let text = newPostElement.current.value;
-        props.updateTextNewPost(text);
+        props.newPostTextUpdate(text);
     };
 
     return (
@@ -37,8 +37,7 @@ const MyPosts = (props) => {
                 {posts}
             </div>
         </div>
-    )
-        ;
+    );
 };
 
 export default MyPosts;
