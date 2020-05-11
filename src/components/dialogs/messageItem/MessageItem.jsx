@@ -1,7 +1,6 @@
 import React from "react";
 import s from './MessageItem.module.css'
 import Message from "./message/Message";
-import {addNewMessage} from "../../../redux/state";
 
 let MessageItem = (props) => {
 
@@ -17,7 +16,6 @@ let MessageItem = (props) => {
 
     let updateTextCurrentMessage = () => {
         let text = newMessageElement.current.value;
-        console.log(text);
         props.updateTextCurrentMessage(text);
     };
 
@@ -30,7 +28,7 @@ let MessageItem = (props) => {
                 ref={newMessageElement} cols={50}
                 rows={3}
                 value={props.currentMessage}/>
-            <button onClick={addMessage}>Send</button>
+            <button className={s.sendButton} onClick={addMessage}>Send</button>
         </div>
     )
 };
