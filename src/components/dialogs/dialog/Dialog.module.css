@@ -1,0 +1,17 @@
+
+.dialog {
+    font: bold 0.8em Arial;
+    border-bottom: #E8E8E8 1px solid;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: #696969;
+    display: block;
+    padding: 3px;
+}
+
+.dialog .active {
+     background-color: #E8E8E8;
+     color: #393939;
+ }

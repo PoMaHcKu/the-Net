@@ -7,7 +7,9 @@ const Post = (props) => {
 
     return (
         <div className={s.item}>
-            <img src="https://m.gpspro.lv/images/full/091cf15ec8f9fc5ab5fd6b6996a9b212.jpg" alt="avatar"/>
+            <div className={s.ava}>
+                <img src="https://m.gpspro.lv/images/full/091cf15ec8f9fc5ab5fd6b6996a9b212.jpg" alt="avatar"/>
+            </div>
             <Message message={props.message}/>
             <Like countLike={props.countLike}/>
         </div>

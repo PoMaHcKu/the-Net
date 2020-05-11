@@ -1,3 +1,4 @@
 .message {
+    grid-area: m;
     font: 14px white Serif;
 }

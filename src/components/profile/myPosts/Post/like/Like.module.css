@@ -1,4 +1,5 @@
 .like {
+    grid-area: l;
     font: 12px white Serif;
 }
 
