@@ -45,7 +45,7 @@ let store = {
                 {"text": "How is your react?", "id": 3, "authorId": 3},
                 {"text": "It's fine, thanks. What have you written?", "id": 4, "authorId": 2}
             ],
-            currentMessage: ""
+            newMessageText: ""
         },
         navbar: {
             friends: [
@@ -70,43 +70,51 @@ let store = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log("State changed");
     },
-    addNewPost() {
-        let newPost = {
-            message: this._state.profileState.newPostText,
-            id: 5,
-            countLike: 0
-        };
-        this._state.profileState.posts.push(newPost);
-        this._state.profileState.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    newPostTextUpdate(text) {
-        this._state.profileState.newPostText = text;
-        this._callSubscriber(this._state);
-    },
-    addNewMessage() {
-        let newMessage = {
-            "text": this._state.dialogsState.currentMessage,
-            "id": 2,
-            "authorId": 3
-        };
-        this._state.dialogsState.messages.push(newMessage);
-        this._state.dialogsState.currentMessage = '';
-        this._callSubscriber(this._state);
-    },
-    updateTextCurrentMessage(text) {
-        this._state.dialogsState.currentMessage = text;
-        this._callSubscriber(this._state);
+
+    getState() {
+        return this._state;
     },
     subscriber(observer) {
         this._callSubscriber = observer;
     },
+
+    dispatch(action) {  /*action have to has prop "type: 'ADD-POST'*/
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                message: this._state.profileState.newPostText,
+                id: 5,
+                countLike: 0
+            };
+            if (newPost.message === '') {
+                return;
+            }
+            this._state.profileState.posts.push(newPost);
+            this._state.profileState.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profileState.newPostText = action.updateTextNewPost;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage = {
+                "text": this._state.dialogsState.newMessageText,
+                "id": 2,
+                "authorId": 3
+            };
+            if (newMessage.text === '') {
+                return;
+            }
+            this._state.dialogsState.messages.push(newMessage);
+            this._state.dialogsState.newMessageText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsState.newMessageText = action.updateTextNewMessage;
+            this._callSubscriber(this._state);
+        }
+    },
+
 };
 
 export default store;

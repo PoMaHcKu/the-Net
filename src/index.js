@@ -11,10 +11,7 @@ let rerender = (state) => {
     ReactDom.render(
         <BrowserRouter>
             <App state={state}
-                 addNewPost={store.addNewPost.bind(store)}
-                 newPostTextUpdate={store.newPostTextUpdate.bind(store)}
-                 addNewMessage={store.addNewMessage.bind(store)}
-                 updateTextCurrentMessage={store.updateTextCurrentMessage.bind(store)}
+                 dispatcher={store.dispatch.bind(store)}
                  />
         </BrowserRouter>, document.getElementById('root')
     )

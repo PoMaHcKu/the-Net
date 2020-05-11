@@ -7,15 +7,23 @@ const MyPosts = (props) => {
         (post) => <Post message={post.message} countLike={post.countLike} delete={props.functions}/>
     );
 
+    let action = {
+        type: '',
+        updateTextNewPost: '',
+
+    };
+
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.addNewPost();
+        action.type = 'ADD-POST';
+        props.dispatcher(action);
     };
 
     let newPostUpdateText = () => {
-        let text = newPostElement.current.value;
-        props.newPostTextUpdate(text);
+        action.type = 'UPDATE-NEW-POST-TEXT';
+        action.updateTextNewPost = newPostElement.current.value;
+        props.dispatcher(action);
     };
 
     return (
@@ -34,7 +42,7 @@ const MyPosts = (props) => {
                 <button onClick={addPost}>Add post</button>
             </div>
             <div className={s.posts}>
-                {posts}
+                {posts.reverse()}
             </div>
         </div>
     );
