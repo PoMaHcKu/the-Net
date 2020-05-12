@@ -7,6 +7,7 @@ let Friends = (props) => {
 
     let friends = props.friends.map(
         friend => <Friend
+            key={friend.id}
             avatar={friend.avatar}
             firstName={friend.firstName}
             lastName={friend.lastName}

@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 const MyPosts = (props) => {
 
     let posts = props.posts.map(
-        (post) => <Post message={post.message} countLike={post.countLike}/>
+        (post) => <Post key={post.id} message={post.message} countLike={post.countLike}/>
     );
 
     let updateTextNewPost = (e) => {
