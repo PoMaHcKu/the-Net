@@ -7,7 +7,7 @@ const Navbar = (props) => {
     return (
         <nav className={s.nav}>
             <Menu/>
-            <Friends friends={props.props.friends}/>
+            <Friends friends={props.friends}/>
         </nav>
     );
 };

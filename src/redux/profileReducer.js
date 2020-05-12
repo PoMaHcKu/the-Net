@@ -9,13 +9,12 @@ let defaultState = {
         {"message": "Great jobs!!!", "id": 4, "countLike": 117}
     ],
     newPostText: "",
-    profileReducer
 };
 
 const profileReducer = (state = defaultState, action) => {
 
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost = {
                 message: state.newPostText,
                 id: 5,
@@ -24,17 +23,21 @@ const profileReducer = (state = defaultState, action) => {
             if (newPost.message === '') {
                 return;
             }
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.updateTextNewPost;
-            return state;
+            let currentState = {...state};
+            currentState.posts = [...state.posts];
+            currentState.posts.push(newPost);
+            currentState.newPostText = '';
+            return currentState;
+            }
+        case UPDATE_NEW_POST_TEXT: {
+            let currentState = {...state};
+            currentState.newPostText = action.updateTextNewPost;
+            return currentState;
+           }
         default:
             return state;
     }
 };
-
 
 export const addPostActionCreator = () => ({type: ADD_POST});
 
