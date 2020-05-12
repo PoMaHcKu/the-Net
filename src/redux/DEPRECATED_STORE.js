@@ -2,7 +2,7 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import navbarReducer from "./navbarReducer";
 
-let store = {
+let DEPRECATED_STORE = {
     _state: {
         profileState: {
             posts: [
@@ -81,7 +81,7 @@ let store = {
     getState() {
         return this._state;
     },
-    subscriber(observer) {
+    subscribe(observer) {
         this._callSubscriber = observer;
     },
 
@@ -92,9 +92,7 @@ let store = {
         this._state.navbar = navbarReducer(this._state.navbar, action);
 
         this._callSubscriber(this._state);
-
     },
 };
 
-
-export default store;
+export default DEPRECATED_STORE;
