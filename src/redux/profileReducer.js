@@ -9,6 +9,7 @@ let defaultState = {
         {"message": "Great jobs!!!", "id": 4, "countLike": 117}
     ],
     newPostText: "",
+    profileReducer
 };
 
 const profileReducer = (state = defaultState, action) => {

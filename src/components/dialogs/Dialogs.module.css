@@ -12,6 +12,12 @@
 }
 
 /*MESSAGES*/
+
+.messages {
+    padding: 5px;
+
+}
+
 .message {
     padding: 5px;
     height: 100%;
