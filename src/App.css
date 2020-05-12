@@ -2,6 +2,7 @@
 
     display: grid;
     margin: auto;
+    padding-right: 5px;
     min-width: 300px;
     max-width: 900px;
     grid-template-areas:
