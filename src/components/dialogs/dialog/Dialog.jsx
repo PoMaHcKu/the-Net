@@ -3,10 +3,9 @@ import s from './Dialog.module.css'
 import {NavLink} from "react-router-dom";
 
 let Dialog = (props) => {
-
     return (
         <div className={s.dialog}>
-            <NavLink to={"/dialogs/" + props.key} activeClassName={s.active}>
+            <NavLink to={"/dialogs/" + props.id} activeClassName={s.active}>
                 {props.name}
             </NavLink>
         </div>
