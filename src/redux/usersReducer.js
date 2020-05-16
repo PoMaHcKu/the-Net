@@ -77,37 +77,37 @@ let usersReducer = (state = defaultState, action) => {
     }
 };
 
-export const followActionCreator = (userId) => {
+export const follow = (userId) => {
     return {
         type: FOLLOW,
         userId
     }
 };
-export const unFollowActionCreator = (userId) => {
+export const unfollow = (userId) => {
     return {
         type: UNFOLLOW,
         userId
     }
 };
-export const setUsersActionCreator = (users) => {
+export const setUsers = (users) => {
     return {
         type: SET_USERS,
         users
     }
 };
-export const setCurrentPageActionCreator = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: currentPage
     }
 };
-export const setTotalUserCountActionCreator = (totalCount) => {
+export const setTotalUserCount = (totalCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalCount: totalCount
     }
 };
-export const changeLoadActionCreator = () => {
+export const changeLoadStatus = () => {
     return {
         type: CHANGE_LOAD_STATUS,
     }
