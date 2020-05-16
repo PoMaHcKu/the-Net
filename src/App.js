@@ -9,7 +9,7 @@ import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import NavbarContainer from "./components/navbar/NavbarContainer";
-import {UsersContainer} from "./components/users/UsersContainer";
+import UsersContainer from "./components/users/UsersContainer";
 
 const App = () => {
 
