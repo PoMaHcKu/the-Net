@@ -10,7 +10,7 @@ const MyPosts = (props) => {
 
     let updateTextNewPost = (e) => {
         let newTextPost = e.target.value;
-        props.updateTextNewPost(newTextPost);
+        props.newPostUpdateText(newTextPost);
     };
 
     let addPost = () => props.addPost();
