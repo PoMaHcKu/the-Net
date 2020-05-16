@@ -1,0 +1,24 @@
+.loadContainer {
+    height: 100px;
+    width: 100px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.loadContainer img {
+    display: flex;
+    width: 100px;
+    animation-name: rotation;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear
+}
+
+@keyframes rotation {
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}

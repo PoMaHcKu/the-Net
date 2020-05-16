@@ -20,9 +20,9 @@ let Users = (props) => {
             <div>
                 {
                     pages.map(page =>
-                        <span onClick={() => props.choosePage(page)}>
+                        <span onClick={() => props.choosePage(page)} key={page}>
                             <span> </span>
-                            <span className={page === props.currentPage && s.selectedPage}>{page}</span>
+                            <span className={page === props.currentPage ? s.selectedPage : undefined}>{page}</span>
                             <span> </span>
                         </span>
                     )

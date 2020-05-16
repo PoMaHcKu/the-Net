@@ -5,12 +5,14 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
+const CHANGE_LOAD_STATUS = 'CHANGE-LOAD';
 
 let defaultState = {
     users: [],
     pageSize: 5,
     totalCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isLoad: false
 };
 
 let usersReducer = (state = defaultState, action) => {
@@ -56,7 +58,7 @@ let usersReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 totalCount: action.totalCount
-            }
+            };
         case SET_USERS:
             return {
                 ...state,
@@ -64,6 +66,12 @@ let usersReducer = (state = defaultState, action) => {
                     ...action.users
                 ]
             };
+        case CHANGE_LOAD_STATUS: {
+            return {
+                ...state,
+                isLoad: !state.isLoad
+            };
+        }
         default:
             return state;
     }
@@ -97,6 +105,11 @@ export const setTotalUserCountActionCreator = (totalCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalCount: totalCount
+    }
+};
+export const changeLoadActionCreator = () => {
+    return {
+        type: CHANGE_LOAD_STATUS,
     }
 };
 

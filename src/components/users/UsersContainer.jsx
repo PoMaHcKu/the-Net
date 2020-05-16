@@ -1,46 +1,65 @@
 import React from "react";
-import {connect} from "react-redux";
 import * as axios from "axios";
+import Users from "./Users";
+import {connect} from "react-redux";
 import {
+    changeLoadActionCreator,
     followActionCreator,
     setCurrentPageActionCreator,
     setTotalUserCountActionCreator,
     setUsersActionCreator,
     unFollowActionCreator
 } from "../../redux/usersReducer";
-import Users from "./Users";
+import Preloader from "../common/preloader/Preloader";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
+        this.props.changeLoadStatus();
         this.getUsers();
     }
 
     getUsers = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.changeLoadStatus();
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUserCount(response.data.totalCount);
-            }
-        );
+            });
     };
 
     choosePage = (pageNumber) => {
+        this.props.changeLoadStatus();
         this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-                this.props.setUsers(response.data.items);
-            }
-        );
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                    this.props.changeLoadStatus();
+                    this.props.setUsers(response.data.items);
+                }
+            );
+
     };
 
     render = () => {
-        return <Users choosePage={this.choosePage}
-                      follow={this.props.follow}
-                      unfollow={this.props.unfollow}
-                      totalCount={this.props.totalCount}
-                      pageSize={this.props.pageSize}
-                      currentPage={this.props.currentPage}
-                      users={this.props.users}
-        />
+        return (
+            <div>
+                {
+                    this.props.isLoad ?
+                        <Preloader/>
+                        : null
+                }
+                <Users choosePage={this.choosePage}
+                       follow={this.props.follow}
+                       unfollow={this.props.unfollow}
+                       totalCount={this.props.totalCount}
+                       pageSize={this.props.pageSize}
+                       currentPage={this.props.currentPage}
+                       users={this.props.users}/>
+            </div>
+        );
+
     };
 }
 
@@ -49,7 +68,8 @@ let mapStateToProps = (state) => {
         users: state.usersState.users,
         pageSize: state.usersState.pageSize,
         totalCount: state.usersState.totalCount,
-        currentPage: state.usersState.currentPage
+        currentPage: state.usersState.currentPage,
+        isLoad: state.usersState.isLoad,
     }
 };
 
@@ -69,6 +89,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setTotalUserCount: (totalCount) => {
             dispatch(setTotalUserCountActionCreator(totalCount));
+        },
+        changeLoadStatus: () => {
+            dispatch(changeLoadActionCreator());
         }
     }
 };
