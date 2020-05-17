@@ -1,8 +1,6 @@
 package com.roman.thenetapi.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,7 +16,7 @@ public class BasicEntity {
     private LocalDateTime created;
 
     @Column(name = "last_update", insertable = false)
-    private LocalDateTime lastUpdate = LocalDateTime.now();
+    private LocalDateTime lastUpdated = LocalDateTime.now();
 
     @PrePersist
     public void toCreate() {
@@ -27,6 +25,6 @@ public class BasicEntity {
 
     @PreUpdate
     public void toUpdate() {
-        setLastUpdate(LocalDateTime.now());
+        setLastUpdated(LocalDateTime.now());
     }
 }

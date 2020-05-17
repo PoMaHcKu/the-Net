@@ -14,5 +14,5 @@ public abstract class AbstractDTO {
     private LocalDateTime created;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime updated;
+    private LocalDateTime lastUpdated;
 }
