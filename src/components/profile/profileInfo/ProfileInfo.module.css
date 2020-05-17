@@ -8,5 +8,47 @@
 }
 
 .description {
-    padding: 10px;
+    padding: 10px 0;
+    display: grid;
+
+    grid-template-areas: "ava am";
+    grid-template-columns: 2fr 3fr;
+    grid-column-gap: 10px;
+}
+
+.largeAva {
+    grid-area: ava;
+}
+
+.aboutMe {
+    grid-area: am;
+    padding-left: 5px;
+}
+
+.fullName {
+    padding: 0;
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.status {
+    font-weight: bolder;
+}
+
+.contacts {
+    font-weight: 600;
+}
+
+.contact {
+    padding-left: 10px;
+    font-size: 0.9em;
+}
+
+.aboutMe a {
+    color: inherit;
+    text-decoration: none;
+}
+.aboutMe a:hover {
+    font-size: 1.1em;
 }
