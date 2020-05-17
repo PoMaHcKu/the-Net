@@ -4,9 +4,9 @@
     display: grid;
 
     grid-template-areas:
-        "logo textLogo";
+        "logo textLogo loginBlock";
 
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 2fr 1fr;
 }
 
 .logo img {
@@ -20,4 +20,15 @@
     font: 40px "Arial Black";
     color: #e7e7e7;
     -ms-grid-row-align: center;
+}
+
+.loginBlock {
+    padding: 17px;
+    text-align: right;
+    color: #e7e7e7;
+}
+
+.loginBlock a {
+    text-decoration: none;
+    color: #e7e7e7;
 }
