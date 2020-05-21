@@ -7,6 +7,7 @@ import {
     setCurrentPage,
     setTotalUserCount,
     setUsers,
+    toggleWaitingFollowing,
     unfollow
 } from "../../redux/usersReducer";
 import Preloader from "../common/preloader/Preloader";
@@ -49,7 +50,9 @@ class UsersContainer extends React.Component {
                        totalCount={this.props.totalCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
-                       users={this.props.users}/>
+                       users={this.props.users}
+                       toggleWaitingFollowing={this.props.toggleWaitingFollowing}
+                       isWaitingFollowing={this.props.isWaitingFollowing}/>
             </div>
         );
 
@@ -63,6 +66,7 @@ let mapStateToProps = (state) => {
         totalCount: state.usersState.totalCount,
         currentPage: state.usersState.currentPage,
         isLoad: state.usersState.isLoad,
+        isWaitingFollowing: state.usersState.isWaitingFollowing,
     }
 };
 
@@ -72,7 +76,8 @@ let mapDispatchToProps = {
     setUsers,
     setCurrentPage,
     setTotalUserCount,
-    changeLoadStatus
+    changeLoadStatus,
+    toggleWaitingFollowing
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

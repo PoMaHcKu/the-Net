@@ -6,13 +6,15 @@ const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
 const CHANGE_LOAD_STATUS = 'CHANGE-LOAD';
+const TOGGLE_WAITING_FOLLOWING_STATUS = 'TOGGLE-WAITING-FOLLOWING-STATUS';
 
 let defaultState = {
     users: [],
     pageSize: 5,
     totalCount: 0,
     currentPage: 1,
-    isLoad: false
+    isLoad: false,
+    isWaitingFollowing: []
 };
 
 let usersReducer = (state = defaultState, action) => {
@@ -51,7 +53,6 @@ let usersReducer = (state = defaultState, action) => {
         case SET_CURRENT_PAGE:
             return {
                 ...state,
-                // users: [...state.users],
                 currentPage: action.currentPage,
             };
         case SET_TOTAL_USERS_COUNT:
@@ -72,6 +73,14 @@ let usersReducer = (state = defaultState, action) => {
                 isLoad: !state.isLoad
             };
         }
+        case TOGGLE_WAITING_FOLLOWING_STATUS:
+            return {
+                ...state,
+                isWaitingFollowing:
+                    action.isProgress
+                        ? [...state.isWaitingFollowing, action.userId]
+                        : [...state.isWaitingFollowing.filter(id => (id !== action.userId))]
+            };
         default:
             return state;
     }
@@ -110,6 +119,13 @@ export const setTotalUserCount = (totalCount) => {
 export const changeLoadStatus = () => {
     return {
         type: CHANGE_LOAD_STATUS,
+    }
+};
+export const toggleWaitingFollowing = (isProgress, userId) => {
+    return {
+        type: TOGGLE_WAITING_FOLLOWING_STATUS,
+        isProgress,
+        userId
     }
 };
 

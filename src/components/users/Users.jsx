@@ -50,22 +50,28 @@ let Users = (props) => {
                             <div>
                             </div>
                                 {user.followed ?
-                                    (<button onClick={() => {
+                                    (<button disabled={props.isWaitingFollowing.some(id => id === user.id)}
+                                             onClick={() => {
+                                        props.toggleWaitingFollowing(true, user.id);
                                         unfollow(user.id)
                                             .then(data => {
                                                 if (data.resultCode === 0) {
                                                     props.unfollow(user.id);
                                                 }
+                                                props.toggleWaitingFollowing(false, user.id);
                                             })
                                     }
 
                                     }>Unfollow</button>) :
-                                    <button onClick={() => {
+                                    <button disabled={props.isWaitingFollowing.some(id => id === user.id)}
+                                            onClick={() => {
+                                        props.toggleWaitingFollowing(true, user.id);
                                         follow(user.id)
                                             .then(data => {
                                                 if (data.resultCode === 0) {
                                                     props.follow(user.id);
                                                 }
+                                                props.toggleWaitingFollowing(false, user.id);
                                             })
                                     }
                                     }>Follow</button>}
