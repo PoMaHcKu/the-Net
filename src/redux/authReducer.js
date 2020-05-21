@@ -1,5 +1,5 @@
-const LOGIN = 'LOGIN';
-const LOGOUT = 'LOGOUT';
+// const LOGIN = 'LOGIN';
+// const LOGOUT = 'LOGOUT';
 const SET_USER_DATA = 'LOGOUT';
 
 
@@ -19,10 +19,6 @@ const authReducer = (state = defaultState, action) => {
                 ...state,
                 ...action.data,
                 isAuth: true,
-            };
-        case LOGOUT:
-            return {
-
             };
         default:
             return state;

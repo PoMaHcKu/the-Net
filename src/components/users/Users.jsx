@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.css'
 import uPhoto from '../../pictures/user.jpg';
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 let Users = (props) => {
 
@@ -48,9 +49,35 @@ let Users = (props) => {
                                 </NavLink>
                             <div>
                             </div>
-                                {user.isFriend ?
-                                    <button onClick={() => props.unfollow(user.id)}>Unfollow</button> :
-                                    <button onClick={() => props.follow(user.id)}>Follow</button>}
+                                {user.followed ?
+                                    <button onClick={() => {
+                                        axios
+                                            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                                {withCredentials: true,
+                                                headers: {
+                                                    "API-KEY": "502f064f-d6aa-46a0-8c5f-855fa9475114"
+                                                }})
+                                            .then(response => {
+                                                if (response.data.resultCode === 0) {
+                                                    props.unfollow(user.id);
+                                                }
+                                            })}
+
+                                    }>Unfollow</button> :
+                                    <button onClick={() => {
+                                            axios
+                                                .post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                                    {},
+                                                    {withCredentials: true,
+                                                    headers: {
+                                                        "API-KEY": "502f064f-d6aa-46a0-8c5f-855fa9475114"
+                                                    }})
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.follow(user.id);
+                                                    }
+                                                })}
+                                    }>Follow</button>}
                             </div>
                         </span>
                         <span>
