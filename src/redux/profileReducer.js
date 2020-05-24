@@ -1,3 +1,5 @@
+import {getProfileRequest} from "../dao/ApiDao";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -40,7 +42,7 @@ const profileReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 profile: action.profile,
-            }
+            };
         default:
             return state;
     }
@@ -51,9 +53,20 @@ export const newPostUpdateText = (text) => ({
     type: UPDATE_NEW_POST_TEXT,
     updateTextNewPost: text,
 });
-export const setUserProfile = (profile) => ({
+export const setUserProfileSuccess = (profile) => ({
     type: SET_USER_PROFILE,
     profile
 });
+
+export const setUserProfile = (userId) => {
+
+    return (dispatch) => {
+        if (!userId) userId = 2;
+        getProfileRequest(userId)
+            .then(data => {
+                dispatch(setUserProfileSuccess(data));
+            });
+    }
+};
 
 export default profileReducer;

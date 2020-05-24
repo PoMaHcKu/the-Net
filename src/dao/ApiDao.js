@@ -8,6 +8,7 @@ const samuraiApi = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/"
 });
 
+// Users requests
 export const getUsersRequest = (currentPage = 1, pageSize = 5) => {
     return samuraiApi
         .get(`users?page=${currentPage}&count=${pageSize}`,
@@ -34,4 +35,12 @@ export const login = () => {
     return samuraiApi
         .get("auth/me")
         .then(response => response.data);
+};
+
+//Profile requests
+
+export const getProfileRequest = (userId) => {
+    return samuraiApi
+        .get("profile/" + userId)
+        .then(response => response.data)
 };
