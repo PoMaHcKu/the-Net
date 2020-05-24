@@ -1,5 +1,7 @@
 // const ADD_USER = 'ADD_USER';
 // const UPDATE_USER = 'UPDATE_USER';
+import {followRequest, getUsersRequest, unfollowRequest} from "../dao/ApiDao";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -126,6 +128,44 @@ export const toggleWaitingFollowing = (isProgress, userId) => {
         type: TOGGLE_WAITING_FOLLOWING_STATUS,
         isProgress,
         userId
+    }
+};
+
+export const getUsersThunk = (currentPage = 1, pageSize = 5) => {
+
+    return (dispatch) => {
+        dispatch(changeLoadStatus());
+        getUsersRequest(currentPage, pageSize)
+            .then(data => {
+                dispatch(changeLoadStatus());
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUserCount(data.totalCount));
+            })
+    }
+};
+export const followThunk = (userId) => {
+
+    return (dispatch) => {
+        dispatch(toggleWaitingFollowing(true, userId));
+        followRequest(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(follow(userId));
+                }
+                dispatch(toggleWaitingFollowing(false, userId));
+            })
+    }
+};
+export const unfollowThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleWaitingFollowing(true, userId));
+        unfollowRequest(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                   dispatch(unfollow(userId));
+                }
+               dispatch(toggleWaitingFollowing(false, userId));
+            })
     }
 };
 

@@ -1,39 +1,18 @@
 import React from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
-import {
-    changeLoadStatus,
-    follow,
-    setCurrentPage,
-    setTotalUserCount,
-    setUsers,
-    toggleWaitingFollowing,
-    unfollow
-} from "../../redux/usersReducer";
+import {followThunk, getUsersThunk, setCurrentPage, unfollowThunk} from "../../redux/usersReducer";
 import Preloader from "../common/preloader/Preloader";
-import {getUsers} from "../../dao/ApiDao";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.changeLoadStatus();
-        getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.changeLoadStatus();
-                this.props.setUsers(data.items);
-                this.props.setTotalUserCount(data.totalCount);
-            })
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
     };
 
     choosePage = (pageNumber) => {
-        this.props.changeLoadStatus();
         this.props.setCurrentPage(pageNumber);
-        getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                    this.props.changeLoadStatus();
-                    this.props.setUsers(data.items);
-                }
-            );
+        this.props.getUsersThunk(pageNumber, this.props.pageSize);
     };
 
     render = () => {
@@ -45,14 +24,13 @@ class UsersContainer extends React.Component {
                         : null
                 }
                 <Users choosePage={this.choosePage}
-                       follow={this.props.follow}
-                       unfollow={this.props.unfollow}
                        totalCount={this.props.totalCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
                        users={this.props.users}
-                       toggleWaitingFollowing={this.props.toggleWaitingFollowing}
-                       isWaitingFollowing={this.props.isWaitingFollowing}/>
+                       isWaitingFollowing={this.props.isWaitingFollowing}
+                       followThunk={this.props.followThunk}
+                       unfollowThunk={this.props.unfollowThunk}/>
             </div>
         );
 
@@ -71,13 +49,10 @@ let mapStateToProps = (state) => {
 };
 
 let mapDispatchToProps = {
-    follow,
-    unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUserCount,
-    changeLoadStatus,
-    toggleWaitingFollowing
+    getUsersThunk,
+    followThunk,
+    unfollowThunk
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

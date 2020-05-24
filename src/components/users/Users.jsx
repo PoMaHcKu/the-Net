@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Users.module.css'
 import uPhoto from '../../pictures/user.jpg';
 import {NavLink} from "react-router-dom";
-import {follow, unfollow} from "../../dao/ApiDao";
 import ChooserPage from "./choosePage/ChooserPage";
 
 let Users = (props) => {
@@ -30,29 +29,15 @@ let Users = (props) => {
                                 {user.followed ?
                                     (<button disabled={props.isWaitingFollowing.some(id => id === user.id)}
                                              onClick={() => {
-                                        props.toggleWaitingFollowing(true, user.id);
-                                        unfollow(user.id)
-                                            .then(data => {
-                                                if (data.resultCode === 0) {
-                                                    props.unfollow(user.id);
-                                                }
-                                                props.toggleWaitingFollowing(false, user.id);
-                                            })
-                                    }
+                                                 props.unfollowThunk(user.id);
+                                             }
 
-                                    }>Unfollow</button>) :
+                                             }>Unfollow</button>) :
                                     <button disabled={props.isWaitingFollowing.some(id => id === user.id)}
                                             onClick={() => {
-                                        props.toggleWaitingFollowing(true, user.id);
-                                        follow(user.id)
-                                            .then(data => {
-                                                if (data.resultCode === 0) {
-                                                    props.follow(user.id);
-                                                }
-                                                props.toggleWaitingFollowing(false, user.id);
-                                            })
-                                    }
-                                    }>Follow</button>}
+                                                props.followThunk(user.id);
+                                            }
+                                            }>Follow</button>}
                             </div>
                         </span>
                         <span>
