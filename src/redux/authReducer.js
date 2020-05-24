@@ -1,5 +1,3 @@
-// const LOGIN = 'LOGIN';
-// const LOGOUT = 'LOGOUT';
 import {AuthApi} from "../dao/AuthApi";
 
 const SET_USER_DATA = 'LOGOUT';
