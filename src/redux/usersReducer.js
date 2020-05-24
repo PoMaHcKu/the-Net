@@ -1,6 +1,4 @@
-// const ADD_USER = 'ADD_USER';
-// const UPDATE_USER = 'UPDATE_USER';
-import {followRequest, getUsersRequest, unfollowRequest} from "../dao/ApiDao";
+import {UserApi} from "../dao/UserApi";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -131,11 +129,15 @@ export const toggleWaitingFollowing = (isProgress, userId) => {
     }
 };
 
+let userDao = new UserApi();
+
 export const getUsersThunk = (currentPage = 1, pageSize = 5) => {
 
     return (dispatch) => {
         dispatch(changeLoadStatus());
-        getUsersRequest(currentPage, pageSize)
+        userDao
+            .getUsers(currentPage, pageSize)
+            //
             .then(data => {
                 dispatch(changeLoadStatus());
                 dispatch(setUsers(data.items));
@@ -147,7 +149,7 @@ export const follow = (userId) => {
 
     return (dispatch) => {
         dispatch(toggleWaitingFollowing(true, userId));
-        followRequest(userId)
+        userDao.follow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(followSuccess(userId));
@@ -159,12 +161,12 @@ export const follow = (userId) => {
 export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(toggleWaitingFollowing(true, userId));
-        unfollowRequest(userId)
+        userDao.unfollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
-                   dispatch(unfollowSuccess(userId));
+                    dispatch(unfollowSuccess(userId));
                 }
-               dispatch(toggleWaitingFollowing(false, userId));
+                dispatch(toggleWaitingFollowing(false, userId));
             })
     }
 };

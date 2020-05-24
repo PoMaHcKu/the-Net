@@ -1,4 +1,4 @@
-import {getProfileRequest} from "../dao/ApiDao";
+import {ProfileApi} from "../dao/ProfileApi";
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
@@ -58,11 +58,13 @@ export const setUserProfileSuccess = (profile) => ({
     profile
 });
 
+let profileDao = new ProfileApi();
+
 export const setUserProfile = (userId) => {
 
     return (dispatch) => {
         if (!userId) userId = 2;
-        getProfileRequest(userId)
+        profileDao.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfileSuccess(data));
             });
