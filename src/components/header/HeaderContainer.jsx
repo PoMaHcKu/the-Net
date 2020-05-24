@@ -1,22 +1,13 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {setAuthUserData} from "../../redux/authReducer";
-import {login} from "../../dao/ApiDao";
+import {login} from "../../redux/authReducer";
 
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        login()
-            .then(data => {
-                    if (data.resultCode === 0) {
-                        this.props.setAuthUserData(
-                            data.data.id,
-                            data.data.email,
-                            data.data.login);
-                    }
-                }
-            );
+        this.props.login();
+
     }
 
     render() {
@@ -27,11 +18,11 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     isAuth: state.authState.isAuth,
-    login: state.authState.login
+    myLogin: state.authState.login
 });
 
 let mapDispatchToProps = {
-    setAuthUserData
+    login
 };
 
 

@@ -1,5 +1,7 @@
 // const LOGIN = 'LOGIN';
 // const LOGOUT = 'LOGOUT';
+import {loginRequest} from "../dao/ApiDao";
+
 const SET_USER_DATA = 'LOGOUT';
 
 
@@ -34,5 +36,19 @@ export const setAuthUserData = (userId, email, login) => ({
         login
     }
 });
+
+export const login = () => {
+  return (dispatch) => {
+      loginRequest()
+          .then(data => {
+              if (data.resultCode === 0) {
+                  dispatch(setAuthUserData(
+                      data.data.id,
+                      data.data.email,
+                      data.data.login));
+              }
+          })
+  }
+};
 
 export default authReducer;

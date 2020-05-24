@@ -31,16 +31,19 @@ export const unfollowRequest = (userId) => {
         .then(response => response.data);
 };
 
-export const login = () => {
-    return samuraiApi
-        .get("auth/me")
-        .then(response => response.data);
-};
-
 //Profile requests
 
 export const getProfileRequest = (userId) => {
     return samuraiApi
         .get("profile/" + userId)
         .then(response => response.data)
+};
+
+
+//auth requests
+
+export const loginRequest = () => {
+    return samuraiApi
+        .get("auth/me")
+        .then(response => response.data);
 };
