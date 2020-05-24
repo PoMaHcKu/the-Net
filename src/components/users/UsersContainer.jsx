@@ -1,7 +1,7 @@
 import React from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
-import {followThunk, getUsersThunk, setCurrentPage, unfollowThunk} from "../../redux/usersReducer";
+import {follow, getUsersThunk, setCurrentPage, unfollow} from "../../redux/usersReducer";
 import Preloader from "../common/preloader/Preloader";
 
 class UsersContainer extends React.Component {
@@ -29,8 +29,8 @@ class UsersContainer extends React.Component {
                        currentPage={this.props.currentPage}
                        users={this.props.users}
                        isWaitingFollowing={this.props.isWaitingFollowing}
-                       followThunk={this.props.followThunk}
-                       unfollowThunk={this.props.unfollowThunk}/>
+                       follow={this.props.follow}
+                       unfollow={this.props.unfollow}/>
             </div>
         );
 
@@ -51,8 +51,8 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = {
     setCurrentPage,
     getUsersThunk,
-    followThunk,
-    unfollowThunk
+    follow,
+    unfollow
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

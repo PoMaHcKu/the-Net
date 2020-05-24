@@ -29,13 +29,13 @@ let Users = (props) => {
                                 {user.followed ?
                                     (<button disabled={props.isWaitingFollowing.some(id => id === user.id)}
                                              onClick={() => {
-                                                 props.unfollowThunk(user.id);
+                                                 props.unfollow(user.id);
                                              }
 
                                              }>Unfollow</button>) :
                                     <button disabled={props.isWaitingFollowing.some(id => id === user.id)}
                                             onClick={() => {
-                                                props.followThunk(user.id);
+                                                props.follow(user.id);
                                             }
                                             }>Follow</button>}
                             </div>

@@ -88,13 +88,13 @@ let usersReducer = (state = defaultState, action) => {
     }
 };
 
-export const follow = (userId) => {
+export const followSuccess = (userId) => {
     return {
         type: FOLLOW,
         userId
     }
 };
-export const unfollow = (userId) => {
+export const unfollowSuccess = (userId) => {
     return {
         type: UNFOLLOW,
         userId
@@ -143,26 +143,26 @@ export const getUsersThunk = (currentPage = 1, pageSize = 5) => {
             })
     }
 };
-export const followThunk = (userId) => {
+export const follow = (userId) => {
 
     return (dispatch) => {
         dispatch(toggleWaitingFollowing(true, userId));
         followRequest(userId)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(follow(userId));
+                    dispatch(followSuccess(userId));
                 }
                 dispatch(toggleWaitingFollowing(false, userId));
             })
     }
 };
-export const unfollowThunk = (userId) => {
+export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(toggleWaitingFollowing(true, userId));
         unfollowRequest(userId)
             .then(data => {
                 if (data.resultCode === 0) {
-                   dispatch(unfollow(userId));
+                   dispatch(unfollowSuccess(userId));
                 }
                dispatch(toggleWaitingFollowing(false, userId));
             })
