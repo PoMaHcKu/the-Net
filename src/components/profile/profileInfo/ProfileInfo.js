@@ -1,6 +1,8 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/Preloader"
+import Contacts from "./contacts/Contacts";
+import Status from "./status/Status"
 
 const ProfileInfo = (props) => {
 
@@ -21,18 +23,10 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={s.aboutMe}>
                     <p className={s.fullName}>{props.profile.fullName}</p>
-                    <p className={s.status}>{props.profile.aboutMe}</p>
+                    {/*<p className={s.status}>{props.profile.aboutMe}</p>*/}
+                    <Status status={"Hi, this is status!"}/>
+                    <Contacts contacts={props.profile.contacts}/>
 
-                    <div className={s.contacts}>
-                        <span>Contacts</span>
-                            <p className={s.contact}><a href={props.profile.contacts.website} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.website === null ? null : "MySite"}</a></p>
-                            <p className={s.contact}><a href={props.profile.contacts.vk} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.vk === null ? null : "VK"}</a></p>
-                            <p className={s.contact}><a href={props.profile.contacts.twitter} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.twitter === null ? null : "Twitter"}</a></p>
-                            <p className={s.contact}><a href={"https://" + props.profile.contacts.instagram} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.instagram === null ? null : "Instagram"}</a></p>
-                            <p className={s.contact}><a href={props.profile.contacts.youtube} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.youtube === null ? null : "YouTube"}</a></p>
-                            <p className={s.contact}><a href={props.profile.contacts.github} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.github === null ? null : "Git"}</a></p>
-                            <p className={s.contact}><a href={props.profile.contacts.mainLink} rel={"noopener noreferrer"} target={"_blank"}>{props.profile.contacts.mainLink === null ? null : "Main Link"}</a></p>
-                    </div>
                 </div>
             </div>
         </div>
