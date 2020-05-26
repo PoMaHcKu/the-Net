@@ -8,27 +8,27 @@ class Status extends React.Component {
         currentStatus: "This is STATUS MOTHERFUCKER!!!"
     };
 
-    activateEditMode() {
+    activateEditMode = () => {
         this.setState({editMode: true});
     };
 
-    deActivateEditMode() {
+    deActivateEditMode = () => {
         this.setState({editMode: false});
     };
 
-    setStatus(e) {
+    setStatus = (e) => {
         this.setState({currentStatus: e.target.value});
     }
 
     render() {
         return (
-            <div className={s.status} onDoubleClick={this.activateEditMode.bind(this)}>
+            <div className={s.status} onDoubleClick={this.activateEditMode}>
                 {this.state.editMode ?
                     <div>
                         <input value={this.state.currentStatus}
                                autoFocus={true}
-                               onBlur={this.deActivateEditMode.bind(this)}
-                               onChange={this.setStatus.bind(this)}
+                               onBlur={this.deActivateEditMode}
+                               onChange={this.setStatus}
                         />
                     </div> :
                     <div>
