@@ -3,6 +3,7 @@ import {ProfileApi} from "../dao/ProfileApi";
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_USER_STATUS = 'SET-USER-STATUS';
 
 let defaultState = {
     posts: [
@@ -13,6 +14,7 @@ let defaultState = {
     ],
     newPostText: "",
     profile: null,
+    status: "",
 };
 
 const profileReducer = (state = defaultState, action) => {
@@ -43,6 +45,11 @@ const profileReducer = (state = defaultState, action) => {
                 ...state,
                 profile: action.profile,
             };
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                status: action.status,
+            }
         default:
             return state;
     }
@@ -57,16 +64,38 @@ export const setUserProfileSuccess = (profile) => ({
     type: SET_USER_PROFILE,
     profile
 });
+export const setUserStatusSuccess = (status) => ({
+    type: SET_USER_STATUS,
+    status
+});
 
 let profileDao = new ProfileApi();
 
-export const setUserProfile = (userId) => {
+export const getUserProfile = (userId) => {
 
     return (dispatch) => {
         if (!userId) userId = 2;
         profileDao.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfileSuccess(data));
+            });
+    }
+};
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileDao.getStatus(userId)
+            .then(data => {
+                dispatch(setUserStatusSuccess(data));
+            })
+    }
+}
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileDao.updateStatus(status)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setUserStatusSuccess(status));
+                }
             });
     }
 };

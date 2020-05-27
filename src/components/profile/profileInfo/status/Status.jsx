@@ -5,7 +5,7 @@ class Status extends React.Component {
 
     state = {
         editMode: false,
-        currentStatus: "This is STATUS MOTHERFUCKER!!!"
+        status: this.props.status.text
     };
 
     activateEditMode = () => {
@@ -14,25 +14,37 @@ class Status extends React.Component {
 
     deActivateEditMode = () => {
         this.setState({editMode: false});
+        this.props.status.updateStatus(this.state.status);
     };
 
-    setStatus = (e) => {
-        this.setState({currentStatus: e.target.value});
+    updateStatus = (e) => {
+        let status = e.target.value;
+        this.setState({status: status});
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log(22)
+        if (prevProps.status.text !== this.props.status.text) {
+            this.setState({
+                status: this.props.status.text,
+            })
+            this.render();
+        }
+    };
 
     render() {
         return (
             <div className={s.status} onDoubleClick={this.activateEditMode}>
                 {this.state.editMode ?
                     <div>
-                        <input value={this.state.currentStatus}
+                        <input value={this.state.status}
                                autoFocus={true}
                                onBlur={this.deActivateEditMode}
-                               onChange={this.setStatus}
+                               onChange={this.updateStatus}
                         />
                     </div> :
                     <div>
-                        <span>{this.state.currentStatus}</span>
+                        <span>{this.state.status || "Double click to update status here..."}</span>
                     </div>
                 }
             </div>
