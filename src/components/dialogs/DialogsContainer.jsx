@@ -1,4 +1,4 @@
-import {addMessage, updateTextNewMessage} from "../../redux/dialogsReducer";
+import {addMessage} from "../../redux/dialogsReducer";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import Dialogs from "./Dialogs";
@@ -14,7 +14,6 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
     addMessage,
-    updateTextNewMessage
 };
 
 export default compose(

@@ -23,7 +23,6 @@ class Status extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(22)
         if (prevProps.status.text !== this.props.status.text) {
             this.setState({
                 status: this.props.status.text,

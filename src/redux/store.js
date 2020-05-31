@@ -1,4 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
+import {reducer as formReducer} from "redux-form";
 import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import navbarReducer from "./navbarReducer";
@@ -13,6 +14,7 @@ let reducers = combineReducers(
         usersState: usersReducer,
         navbar: navbarReducer,
         authState: authReducer,
+        form: formReducer,
     }
 );
 

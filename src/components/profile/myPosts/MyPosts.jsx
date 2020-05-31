@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import NewPostForm from "./new-post-form/NewPostForm";
 
 const MyPosts = (props) => {
 
@@ -8,27 +9,15 @@ const MyPosts = (props) => {
         (post) => <Post key={post.id} message={post.message} countLike={post.countLike}/>
     );
 
-    let updateTextNewPost = (e) => {
-        let newTextPost = e.target.value;
-        props.newPostUpdateText(newTextPost);
+    let addNewPost = (form) => {
+        props.addPost(form.newPostText);
+        form.newPostText = "";
     };
-
-    let addPost = () => props.addPost();
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
-            <div>
-                <textarea onChange={updateTextNewPost}
-                          rows="4"
-                          maxLength="500"
-                          cols={60}
-                          placeholder={"What's new?"}
-                          value={props.newPostText}/>
-            </div>
-            <div>
-                <button onClick={addPost}>Add post</button>
-            </div>
+            <NewPostForm onSubmit={addNewPost}/>
             <div className={s.posts}>
                 {posts.reverse()}
             </div>

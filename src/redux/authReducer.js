@@ -1,6 +1,7 @@
 import {AuthApi} from "../dao/AuthApi";
 
-const SET_USER_DATA = 'LOGOUT';
+const SET_USER_DATA = 'SET-USER-DATA';
+//const LOGIN = 'LOGIN';
 
 
 let defaultState = {
@@ -37,9 +38,9 @@ export const setAuthUserData = (userId, email, login) => ({
 
 let authDao = new AuthApi();
 
-export const login = () => {
+export const auth = () => {
     return (dispatch) => {
-        authDao.login()
+        authDao.auth()
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(setAuthUserData(
@@ -50,5 +51,21 @@ export const login = () => {
             })
     }
 };
+export const login = (loginData) => {
+    return (dispatch) => {
+        authDao.login(loginData)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    console.log("OK");
+                    dispatch(setAuthUserData(
+                        data.data.id,
+                        data.data.email,
+                        data.data.login));
+                } else {
+                    alert(data.messages);
+                }
+            })
+    }
+}
 
 export default authReducer;
